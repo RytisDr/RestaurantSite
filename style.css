@@ -35,10 +35,6 @@ section{
     margin-left: 50px;
     cursor: pointer;
 }
-.product:hover{
-    z-index: 3;
-    background-color: black;
-}
 .productName{
     font-weight: 50;
 }
