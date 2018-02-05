@@ -1,44 +1,63 @@
-body{
+body {
     margin: auto;
 }
-header{
+
+header {
     text-align: left;
     text-indent: 20px;
     background-color: beige;
     font-family: Quicksand;
     height: 100px;
 }
-header h2{
+
+header h2 {
     display: inline-block;
     line-height: 50px;
     font-size: 2em;
 }
-section{
+
+main section{
     font-family: 'Oswald';
-    text-align: center;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 100vw));
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
     font-size: 1.3em;
     grid-row-gap: 20px;
 }
-.productImg{
+
+section h2{
+    grid-column:  1/-1;
+    text-transform: capitalize;
+}
+
+.productImg {
     width: 30vw;
     max-width: 400px;
 }
-.extraInfo{
+
+.extraInfo {
     display: none;
 }
-.product{
+
+.hide {
+    display: none;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.product {
     font-weight: 70;
     font-size: 0.8em;
     width: 30vw;
     margin-left: 50px;
     cursor: pointer;
 }
-.productName{
+
+.productName {
     font-weight: 50;
 }
 
-.noStock{
+.noStock {
     filter: grayscale(100px);
 }
