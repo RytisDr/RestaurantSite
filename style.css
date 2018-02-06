@@ -41,7 +41,6 @@ section h2{
 .hide {
     display: none;
 }
-
 .strike {
     text-decoration: line-through;
 }
@@ -56,6 +55,7 @@ section h2{
 
 .productName {
     font-weight: 50;
+    text-transform: capitalize;
 }
 
 .noStock {
