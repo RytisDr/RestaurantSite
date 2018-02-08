@@ -1,21 +1,17 @@
-let extra = document.getElementsByClassName("extraInfo");
-
-
-function moreInfo(e) {
-    e.currentTarget.querySelector(".extraInfo").style.display = "inline";
-}
-
-function hideInfo(e) {
-    e.currentTarget.querySelector(".extraInfo").style.display = "none";
-}
-
 let productlist_link = "http://kea-alt-del.dk/t5/api/productlist";
 let image_path = "http://kea-alt-del.dk/t5/site/imgs/small/";
 const catLink = "http://kea-alt-del.dk/t5/api/categories";
+const pLink = "http://kea-alt-del.dk/t5/api/product?id="
 let main = document.querySelector("main");
 let template = document.querySelector("#temp");
 const nav = document.querySelector("nav")
 const fullMenu = document.querySelector("nav a");
+const modal = document.querySelector("#modal");
+
+
+
+
+
 
 fetch(catLink).then(result => result.json()).then(data => categorise(data));
 
@@ -67,22 +63,39 @@ function show(data) {
             clone.querySelector(".discPrice").classList.remove("hide");
             clone.querySelector(".price").classList.add("strike");
         }
+        fetch(pLink + element.id).then(res => res.json()).then(product => showDetail(product));
         section.appendChild(clone);
     })
 
     let products = document.querySelectorAll(".product");
-    products.forEach(function (elem) {
-        elem.addEventListener('mouseover', moreInfo);
-        elem.addEventListener('mouseout', hideInfo);
-    });
+
+    function showDetail(product) {
+        products.forEach(function (elem) {
+            elem.addEventListener('mouseover', moreInfo);
+            elem.addEventListener('mouseout', hideInfo);
+        })
+    function moreInfo(e) {
+    e.currentTarget.querySelector(".modal").classList.remove("hide");
+    e.currentTarget.querySelector(".modal-description").textContent = product.longdescription;/*(".extraInfo").style.display = "inline";*/
+}
+        function hideInfo(e) {
+    e.currentTarget.querySelector(".modal").classList.add("hide"); /*(".extraInfo").style.display = "none";*/
 }
 
-fullMenu.addEventListener('click', ()=>filter("all"));
-function filter(category){
-    document.querySelectorAll("main section").forEach(section=>{
-        if(section.id == category || category == "all"){
+
+    };
+
+}
+
+
+
+fullMenu.addEventListener('click', () => filter("all"));
+
+function filter(category) {
+    document.querySelectorAll("main section").forEach(section => {
+        if (section.id == category || category == "all") {
             section.classList.remove('hide');
-        }else{
+        } else {
             section.classList.add('hide');
         }
     })

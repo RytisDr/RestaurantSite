@@ -66,3 +66,8 @@ section h2{
 .noStock {
     filter: grayscale(100px);
 }
+#modalHide{
+    position: absolute;
+    display: hide;
+
+}
