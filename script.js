@@ -6,7 +6,6 @@ let main = document.querySelector("main");
 let template = document.querySelector("#temp");
 const nav = document.querySelector("nav")
 const fullMenu = document.querySelector("nav a");
-let product = document.querySelectorAll(".product");
 
 fetch(catLink).then(result => result.json()).then(data => categorise(data));
 
@@ -87,7 +86,7 @@ function show(data) {
         if (element.vegetarian) {
             clone.querySelector(".vegetarian").classList.remove("hide");
         }
-        if (element.alcohol>0){
+        if (element.alcohol > 0) {
             clone.querySelector(".alcohol").classList.remove("hide");
         }
         fetch(pLink + element.id).then(res => res.json()).then(product => {
@@ -105,12 +104,15 @@ function show(data) {
         });
 
         function moreInfo(e) {
+            e.currentTarget.querySelector(".shortDescr").classList.add("opacity");
             e.currentTarget.querySelector(".details").classList.remove("hide");
+            e.currentTarget.querySelector(".productImg").style.filter="blur(3px)"
         }
 
         function hideInfo(e) {
+            e.currentTarget.querySelector(".shortDescr").classList.remove("opacity");
             e.currentTarget.querySelector(".details").classList.add("hide");
-
+            e.currentTarget.querySelector(".productImg").style.filter="blur(0px)";
         }
 
     });
