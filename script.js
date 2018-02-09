@@ -104,15 +104,15 @@ function show(data) {
         });
 
         function moreInfo(e) {
-            e.currentTarget.querySelector(".shortDescr").classList.add("opacity");
+            e.currentTarget.querySelector(".shortDescr").classList.add("noVisibility");
             e.currentTarget.querySelector(".details").classList.remove("hide");
-            e.currentTarget.querySelector(".productImg").style.filter="blur(3px)"
+            e.currentTarget.querySelector(".productImg").classList.add("blur");
         }
 
         function hideInfo(e) {
-            e.currentTarget.querySelector(".shortDescr").classList.remove("opacity");
+            e.currentTarget.querySelector(".shortDescr").classList.remove("noVisibility");
             e.currentTarget.querySelector(".details").classList.add("hide");
-            e.currentTarget.querySelector(".productImg").style.filter="blur(0px)";
+            e.currentTarget.querySelector(".productImg").classList.remove("blur");
         }
 
     });
