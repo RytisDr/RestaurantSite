@@ -28,10 +28,11 @@ function categorise(data) {
             a.append("s");
             h2.append("s");
         }
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
         a.href = "#";
         a.addEventListener("click", () => filter(category));
         nav.appendChild(a);
+
     });
     fetch(productlist_link).then(result => result.json()).then(data => show(data));
 }
@@ -55,14 +56,21 @@ function filter(category) {
 
 function show(data) {
     data.forEach(element => {
+        ///////////////////////////////SPELLING IN PRODUCT NAMES///////////
         const section = document.querySelector("#" + element.category);
         if (element.name == "Russisk salatRussian salad") {
             element.name = "Russian salad"
         }
+        if (element.name == "Stake with vegetables"){
+            element.name = "Steak With Vegetables"
+        }//////////////////////////////////////////////////////////////////
+
         let clone = template.cloneNode(true).content;
-        clone.querySelector('.productImg').src = image_path + element.image + "-sm.jpg";
-        clone.querySelector('.productName').textContent = element.name;
-        clone.querySelector('.price').textContent = element.price;
+        clone.querySelector(".productImg").src = image_path + element.image + "-sm.jpg";
+        clone.querySelector(".productName").textContent = element.name;
+        clone.querySelector(".price").textContent = element.price;
+        clone.querySelector(".details").id='p_'+element.id;
+        clone.querySelector('.shortDescr').textContent = element.shortdescription;
 
         if (element.discount) {
             const newPrice = Math.ceil(element.price - element.price * element.discount / 100);
@@ -70,29 +78,23 @@ function show(data) {
             clone.querySelector(".discPrice").classList.remove("hide");
             clone.querySelector(".price").classList.add("strike");
         }
-        fetch(pLink + element.id).then(res => res.json()).then(product => showDetail(product)); //STRUGLING TO SHOW CORRECT DATA//////////////////
+        fetch(pLink + element.id).then(res => res.json()).then(product => {
+             document.querySelector('#p_'+element.id+' .longDescription').textContent = product.longdescription;
+        });
         section.appendChild(clone);
-    })
+    });
+}
 
-    ///////////////////////////////////////////SHOW EXTRA INFO FUNCTION WORKS, DOESNT SHOW CORRECT INFO////////////////////
-    let products = document.querySelectorAll(".product");
+function showDetail(product) {
+    product.addEventListener('mouseover', moreInfo);
+    product.addEventListener('mouseout', hideInfo);
+}
 
-    function showDetail(product) {
-        products.forEach(function (elem) {
-            elem.addEventListener('mouseover', moreInfo);
-            elem.addEventListener('mouseout', hideInfo);
-        })
+function moreInfo(e) {
+    e.currentTarget.querySelector(".modal").classList.remove("hide");
+    e.currentTarget.querySelector(".modal-description").textContent = elem.longdescription; /*(".extraInfo").style.display = "inline";*/
+}
 
-        function moreInfo(e) {
-            e.currentTarget.querySelector(".modal").classList.remove("hide");
-            e.currentTarget.querySelector(".modal-description").textContent = elem.longdescription; /*(".extraInfo").style.display = "inline";*/
-        }
-
-        function hideInfo(e) {
-            e.currentTarget.querySelector(".modal").classList.add("hide"); /*(".extraInfo").style.display = "none";*/
-        }
-
-
-    }
-
+function hideInfo(e) {
+    e.currentTarget.querySelector(".modal").classList.add("hide"); /*(".extraInfo").style.display = "none";*/
 }

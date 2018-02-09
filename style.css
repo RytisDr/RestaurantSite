@@ -39,10 +39,6 @@ section h2{
     max-width: 400px;
 }
 
-.extraInfo {
-    display: none;
-}
-
 .hide {
     display: none;
 }
@@ -65,9 +61,4 @@ section h2{
 
 .noStock {
     filter: grayscale(100px);
-}
-#modalHide{
-    position: absolute;
-    display: hide;
-
 }
