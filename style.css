@@ -24,9 +24,10 @@ header h2 {
 main section{
     font-family: 'Oswald';
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+    grid-template-columns: repeat(auto-fill, 400px);
     font-size: 1.3em;
     grid-row-gap: 20px;
+    grid-column-gap: 40px;
 }
 
 section h2{
@@ -35,8 +36,9 @@ section h2{
 }
 
 .productImg {
-    width: 30vw;
+    width: 90vw;
     max-width: 400px;
+    min-width: 200px;
 }
 
 .hide {
@@ -49,9 +51,9 @@ section h2{
 .product {
     font-weight: 70;
     font-size: 0.8em;
-    width: 30vw;
     margin-left: 50px;
     cursor: pointer;
+    position: relative;
 }
 
 .productName {
@@ -60,5 +62,15 @@ section h2{
 }
 
 .noStock {
-    filter: grayscale(100px);
+    filter: grayscale();
+}
+.soldout{
+  position: absolute;
+  left: 0;
+  top: 60px;
+  font-size: 2em;
+  color: red;
+}
+.vegetarian{
+    color: green;
 }
