@@ -93,26 +93,37 @@ function show(data) {
             document.querySelector('#p_' + element.id + ' .longDescription').textContent = product.longdescription;
         });
         section.appendChild(clone);
+        ///////////////////////MEDIA QUERY FOR CLICK INSTEAD OF HOVER ON SMALLER VIEWPORT///////
+        const mq = window.matchMedia("(max-width: 899px)");
+        ////////////////////////////////////////////////////////////////////////////////////////
         let products = document.querySelectorAll(".product");
 
         products.forEach(function (elem) {
-
+            if (mq.matches) {
+                elem.addEventListener('click', function(){/////WHY DOES THIS WORK FOR SOME PRODUCTS ONLY, SEEMINGLY RANDOM????????????????????///////
+                     elem.querySelector(".shortDescr").classList.toggle("noVisibility");
+                     elem.querySelector(".details").classList.toggle("hide");
+                     elem.querySelector(".productImg").classList.toggle("blur");
+                });
+            }else{
             elem.addEventListener('mouseover', moreInfo);
-
             elem.addEventListener('mouseout', hideInfo);
-
+            }
         });
 
         function moreInfo(e) {
+
             e.currentTarget.querySelector(".shortDescr").classList.add("noVisibility");
             e.currentTarget.querySelector(".details").classList.remove("hide");
             e.currentTarget.querySelector(".productImg").classList.add("blur");
         }
 
         function hideInfo(e) {
+
             e.currentTarget.querySelector(".shortDescr").classList.remove("noVisibility");
             e.currentTarget.querySelector(".details").classList.add("hide");
             e.currentTarget.querySelector(".productImg").classList.remove("blur");
+
         }
 
     });
