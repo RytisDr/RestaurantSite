@@ -93,14 +93,18 @@ function show(data) {
             document.querySelector('#p_' + element.id + ' .longDescription').textContent = product.longdescription;
         });
         section.appendChild(clone);
-        ///////////////////////MEDIA QUERY FOR CLICK INSTEAD OF HOVER ON SMALLER VIEWPORT///////
+
+
+    });
+    ///////////////////////MEDIA QUERY FOR CLICK INSTEAD OF HOVER ON SMALLER VIEWPORT///////
         const mq = window.matchMedia("(max-width: 899px)");
         ////////////////////////////////////////////////////////////////////////////////////////
         let products = document.querySelectorAll(".product");
-
+        console.log(products)
         products.forEach(function (elem) {
+
             if (mq.matches) {
-                elem.addEventListener('click', function(){/////WHY DOES THIS WORK FOR SOME PRODUCTS ONLY, SEEMINGLY RANDOM????????????????????///////
+                elem.addEventListener('click', function(){
                      elem.querySelector(".shortDescr").classList.toggle("noVisibility");
                      elem.querySelector(".details").classList.toggle("hide");
                      elem.querySelector(".productImg").classList.toggle("blur");
@@ -125,6 +129,4 @@ function show(data) {
             e.currentTarget.querySelector(".productImg").classList.remove("blur");
 
         }
-
-    });
-}
+};
